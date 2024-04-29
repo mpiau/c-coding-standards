@@ -6,93 +6,21 @@ Nothing is finished or polished yet.
 
 #### Introduction
 
-A list of rules that I (or should) use when I'm programming in C.
-This repository is in Work In Progress, as I didn't write anything beforehand.
-So I'll iterate on this readme.md.
+The main purpose of this repository is to set rules and guidelines that I'll follow on my personal projects.
+Without an official document, I was tempted to make exceptions in my code, which wasn't consistent
+with the rest of the project.
+It's important to note that nothing is final. It could change depending of the needs, preferences and
+experience.
+
+**The C Coding Standards of this document are purely based on my personal preferences.**
 
 The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL
 NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED",  "MAY", and
 "OPTIONAL" in this document are to be interpreted as described in
 RFC 2119.
 
-## Comments
-
-- Comments MUST start with `// `.
-- A space MUST be added before a `// ` if the comment isn't at the beginning of a line.
-- The usage of `/* ` and ` */` isn't allowed, even for multi-line comments.
-- If you need to comment a block of code for local testing, you can use `#if 0` and `#endif` .
-  Unlike `/* [...] */`, they support nesting.
-
-```c
-// This is a valid comment.
-
-// This is a
-// valid multi-line
-// comment.
-
-#if 0 // Commenting an entire function
-int function( void )
-{
-   [...]
-#if 0 // Nested block of code that was also commented
-   [...]
-#endif
-   [...]
-}
-#endif
-```
-
-> Comments with `/* [...] */` are often used in the middle of a line of code, which have a tendancy
-> to disrupt the logic flow.
-
-```c
-// Basic example. In a real case scenario, these comments would be useless.
-int function( void )
-{
-   function_call( "John" /* Name */, 32 /* Age */ );
-
-   // Aligning comments together is always appreciated.
-   function_call(
-      "John", // Name
-      32      // Age
-   );
-
-   return 0;
-}
-```
-
-A comment, regardless of its form, increase the number of lines and the complexity of the code.
-It can become more harmful than helpful to have useless comments where the code could have been
-self-explanatory by carefully naming your functions / variables, and adopting naming conventions.
-
-```c
-#pragma once // Header file example
-
-[...]
-
-// Returns the name of the given country
-char const *country_get_name( u64 countryId );
-// The above comment is redondant and could have been deduced by the name of the function.
-
-// If not found, an empty string will be returned.
-char const *country_get_name( u64 countryId );
-// Because the function could returns an invalid value, we are tempted to write it in a comment.
-// While the intention is honorable, it could be avoided by changing how the function behave :
-
-bool        country_get_name( u64 countryId, char const **outName );
-char const *country_get_name_or( u64 countryId, char const *default );
-bool        country_exists( u64 countryId );
-// Here, no comments are needed to explain what the different functions will return.
-// - country_get_name() emphasis on the potential invalidity of the data.
-//   outName will be only usable if the function returns true.
-// - country_get_name_or() allows the caller to customize the value returned by default.
-// - country_exists() allows the caller to check the data validity beforehand.
-```
-
-> [!TIP]
-> Always return a usable value at the end of your function.
-> E.g. `NULL` is not considered as a valid value for a pointer.
-
+## Summary
+[Comments]( pages/comments.md )
 
 ## Formatting
 
