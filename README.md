@@ -1,5 +1,11 @@
 # C Coding Standards (WIP)
 
+## IMPORTANT :
+This document can be considered as an early Work-In-Progress draft.
+Nothing is finished or polished yet.
+
+#### Introduction
+
 A list of rules that I (or should) use when I'm programming in C.
 This repository is in Work In Progress, as I didn't write anything beforehand.
 So I'll iterate on this readme.md.
@@ -9,10 +15,89 @@ NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED",  "MAY", and
 "OPTIONAL" in this document are to be interpreted as described in
 RFC 2119.
 
+## Comments
+
+- Comments MUST start with `// `.
+- A space MUST be added before a `// ` if the comment isn't at the beginning of a line.
+- The usage of `/* ` and ` */` isn't allowed, even for multi-line comments.
+- If you need to comment a block of code for local testing, you can use `#if 0` and `#endif` .
+  Unlike `/* [...] */`, they support nesting.
+
+```c
+// This is a valid comment.
+
+// This is a
+// valid multi-line
+// comment.
+
+#if 0 // Commenting an entire function
+int function( void )
+{
+   [...]
+#if 0 // Nested block of code that was also commented
+   [...]
+#endif
+   [...]
+}
+#endif
+```
+
+> Comments with `/* [...] */` are often used in the middle of a line of code, which have a tendancy
+> to disrupt the logic flow.
+
+```c
+// Basic example. In a real case scenario, these comments would be useless.
+int function( void )
+{
+   function_call( "John" /* Name */, 32 /* Age */ );
+
+   // Aligning comments together is always appreciated.
+   function_call(
+      "John", // Name
+      32      // Age
+   );
+
+   return 0;
+}
+```
+
+A comment, regardless of its form, increase the number of lines and the complexity of the code.
+It can become more harmful than helpful to have useless comments where the code could have been
+self-explanatory by carefully naming your functions / variables, and adopting naming conventions.
+
+```c
+#pragma once // Header file example
+
+[...]
+
+// Returns the name of the given country
+char const *country_get_name( u64 countryId );
+// The above comment is redondant and could have been deduced by the name of the function.
+
+// If not found, an empty string will be returned.
+char const *country_get_name( u64 countryId );
+// Because the function could returns an invalid value, we are tempted to write it in a comment.
+// While the intention is honorable, it could be avoided by changing how the function behave :
+
+bool        country_get_name( u64 countryId, char const **outName );
+char const *country_get_name_or( u64 countryId, char const *default );
+bool        country_exists( u64 countryId );
+// Here, no comments are needed to explain what the different functions will return.
+// - country_get_name() emphasis on the potential invalidity of the data.
+//   outName will be only usable if the function returns true.
+// - country_get_name_or() allows the caller to customize the value returned by default.
+// - country_exists() allows the caller to check the data validity beforehand.
+```
+
+> [!TIP]
+> Always return a usable value at the end of your function.
+> E.g. `NULL` is not considered as a valid value for a pointer.
+
+
 ## Formatting
 
-- The maximum length of a line of code SHOULD be restricted to 79 when possible.
-However, it MUST NOT be greater than 99.
+- The maximum length of a line of code SHOULD be restricted to 80 when possible.
+However, it MUST NOT be greater than 100.
 Readability is important and it's a common practice to have multiple files opened at the same time. Having long lines will force users to either use the horizontal scroll bar to see the rest of the code, or wrap the code in the next line which isn't great for the readability.
 
 - There is no maximum size for a particular function, but it's RECOMMENDED to have small functions with a specific task, rather than one big function that is doing the whole work.
