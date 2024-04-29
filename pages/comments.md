@@ -1,4 +1,4 @@
-## Comments
+## Comments (WIP)
 
 Comments are recommended, provided they are useful.
 Don't explain HOW the code works: the code itself should be self-explanatory.
@@ -87,7 +87,7 @@ Your `TODO` comment MUST follow the pattern below :
 //  with 2 spaces instead of 1 at the beginning>
 ```
 
-[!TIP]
+> [!TIP]
 > If immediate attention is required, you can also use `#warning <your message>` to give more
 > visibility about the issue that needs to be fixed.
 
