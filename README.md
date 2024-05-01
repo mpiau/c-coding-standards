@@ -1,11 +1,11 @@
 C Coding Standards
 ====================
 
-These guidelines are based on my own preferences and experiences.
+These guidelines are based on my own preferences and experiences.\
 You can use them as you like on your personal projects, or adjust them to your needs.
 
 The most important rule to follow when programming is to be *consistent* with the
-codebase you are working on. An significant part of writing good code is following
+codebase you are working on. A significant part of writing good code is following
 the adopted style and guidelines of the project.
 Consistent naming, formatting, ordering, and logic makes it easier to understand each other.
 It also helps us to focus on what the code does, which can prevent errors from being overlooked during reviews.
@@ -24,7 +24,7 @@ The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD",
 interpreted as described in RFC 2119.
 
 
-TODO List
+Not exhaustive TODO List
 ----------
 - [ ] Write an introduction
 - [ ] Write a summary
