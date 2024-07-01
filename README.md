@@ -29,7 +29,9 @@ Not exhaustive TODO List
 - [ ] Write an introduction
 - [ ] Write a summary
 - [ ] Write an indentation section
+- [ ] Write a preprocessor section
 - [ ] Write a comments section
+- [ ] Write a define section
 - [ ] Write a formatting section
 - [ ] Write a struct / union / enum section
 - [ ] Write a header files section
@@ -42,3 +44,40 @@ Not exhaustive TODO List
 - [ ] Write a C recommended version section
 - [ ] Write a code organization section
 - [ ] Finish the list of this todo-list
+
+C Programming Language Coding Standards
+==
+
+C-FMT-XX - C Formatting Rules
+--
+
+C-FMT-01 - Each line shall be limited to 99 characters
+--
+
+A line of code shall not be larger than 99 characters.<br/>
+Exceeding this limit often makes the code less readable and artificially increases its complexity.<br/>
+A statement exceeding that limit shall be broken into smaller pieces, with the correct alignment.<br/>
+
+```c
+// Non compliant example
+variable = (ComplexStructure) { .firstString = "A small line of example", .secondString = "Another line of example" };
+
+// Compliant example
+variable = (ComplexStructure) = {
+   .firstString = "A small line of example",
+   .secondString = "Another line of example"
+};
+```
+
+C-FMT-02 - Spaces shall be used for indentation
+--
+
+Indentations shall only be done with spaces, not tabs.<br/>
+
+C-FMT-03 - Indentations shall be 3 characters wide
+--
+
+Each indentation shall be made with 3 spaces.
+
+C-FMT-TODO - 
+--
