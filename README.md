@@ -45,11 +45,10 @@ Not exhaustive TODO List
 - [ ] Write a code organization section
 - [ ] Finish the list of this todo-list
 
-C Programming Language Coding Standards
-==
+# C Programming Language Coding Standards
 
 C-FMT-XX - C Formatting Rules
---
+==
 
 C-FMT-01 - Each line shall be limited to 99 characters
 --
@@ -63,7 +62,7 @@ A statement exceeding that limit shall be broken into smaller pieces, with the c
 variable = (ComplexStructure) { .firstString = "A small line of example", .secondString = "Another line of example" };
 
 // Compliant example
-variable = (ComplexStructure) = {
+variable = (ComplexStructure) {
    .firstString = "A small line of example",
    .secondString = "Another line of example"
 };
