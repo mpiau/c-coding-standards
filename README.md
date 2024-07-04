@@ -87,8 +87,13 @@ C-FUNC-XX - C Functions Rules
 ==
 
 C-FUNC-XX - A function name shall be written in snake_case
+--
+
 C-FUNC-XX - A function shall have at most 4 parameters
+--
+
 C-FUNC-XX - A function with no parameter shall have a `void` parameter.
+--
 
 ```c
 void non_compliant_function();
@@ -97,17 +102,31 @@ void compliant_function( void );
 ```
 
 C-FUNC-XX - A static function shall be only defined in a .c file.
+--
+
 C-FUNC-XX - Static functions shall only be used within the file they are defined.
+--
+
 C-FUNC-XX - Static functions shall be defined before non-static functions.
+--
 
 C-FUNC-XX - An unused function shall be either disabled by the preprocessor or deleted.
+--
+
 C-FUNC-XX - A non-static function definition shall have its associated declaration in a header file.
+--
 
 C-FUNC-XX - A non-void function shall have at least one return statement
+--
+
 C-FUNC-XX - A non-void function shall have a return statement at the end of the function
+--
+
 C-FUNC-XX - The return value of a function shall either be used or explicitly discarded
+--
 
 C-FUNC-XX - Function attributes and specifiers shall be written in a separated line
+--
 ```c
 [[nodiscard]] static u64 non_compliant_function( void )
 {
@@ -123,6 +142,7 @@ u64 compliant_function( void )
 ```
 
 C-FUNC-XX - Attributes shall be written before any specifier
+--
 ```c
 static [[nodiscard]]
 u64 non_compliant_function( void )
@@ -146,9 +166,10 @@ u64 compliant_function( void )
 ```
 
 C-FUNC-XX - Function specifiers order shall be static, volatile and inline
-
+--
 
 C-LANG-XX - Language related rules
 ==
 
 C-LANG-XX - Identifiers, files, strings and comments shall be written in english
+--
