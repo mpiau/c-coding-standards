@@ -9,21 +9,21 @@
 > An important part of writing good code is following the style adopted and the guidelines of the project.
 >
 > Consistency in names, formatting, order and logic makes it easier for everyone to understand each other.
-> It also helps us to focus on what the code is doing, so that errors are not overlooked during revisions.
+> It also helps us to focus on what the code is doing, so that bugs are not overlooked during reviews.
 
 > [!CAUTION]
-> This document is in Work-In-Progress: Nothing is finished, everything is poorly written.
-> At this stage, it's mostly a brain dump, but making this repository public motivates me to work on it.
+> This document is in **WIP** stage: Nothing is finished, everything is poorly written.
+> At this stage, it's mostly a brain dump, but the fact that it's public motivates me to work on it.
 
 
-### Getting started
+## Getting started
 
 The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD",
 "SHOULD NOT", "RECOMMENDED",  "MAY", and "OPTIONAL" in this document are to be
 interpreted as described in RFC 2119.
 
 
-### Summary
+## Summary
 
 - [C Language Coding Standards (CLCS)](#c-language-coding-standards-clcs)
   - [Getting Started](#getting-started)
@@ -36,17 +36,17 @@ interpreted as described in RFC 2119.
 
 ## C-FMT-XX - Formatting rules
 
-#### C-FMT-01 - Indentations
+### C-FMT-01 - Indentations
 
 - Spaces **must** be used for indentation. Tabs aren't allowed.
 - Indentations **must** be **3** characters wide.
 
-#### C-FMT-02 - Lines width
+### C-FMT-02 - Lines width
 
 - Each line **should** be limited to **79** characters.
 - Each line **must** be limited to **99** characters.
 
-#### C-FMT-03 - Files length
+### C-FMT-03 - Files length
 
 - This is highly dependent of the context, but a C file (.h/.c) **should** not exceed **1000** lines of code to stay readable.
 
