@@ -1,4 +1,4 @@
-# C Language Coding Standards (CLCS)
+# The Unofficial C Language Coding Standards
 
 > [!IMPORTANT]
 > These coding standards are based on my own preferences and experiences.
@@ -22,15 +22,20 @@ The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD",
 "SHOULD NOT", "RECOMMENDED",  "MAY", and "OPTIONAL" in this document are to be
 interpreted as described in RFC 2119.
 
+In some examples, `[...]` is used to remove a chunk of code.
+
 
 ## Summary
 
-- [C Language Coding Standards (CLCS)](#c-language-coding-standards-clcs)
+- [The Unofficial C Language Coding Standards](#the-unofficial-c-language-coding-standards)
   - [Getting Started](#getting-started)
   - [C-FMT-XX - Formatting](#c-fmt-xx-c-formatting-rules)
     - [C-FMT-01 - Indentations](#c-fmt-01---indentations)
     - [C-FMT-02 - Lines width](#c-fmt-02---lines-width)
     - [C-FMT-03 - Files length](#c-fmt-03---files-length)
+    - [C-FMT-04 - Comments](#c-fmt-04---comments)
+    - [C-FMT-05 - Identifiers](#c-fmt-05---identifiers)
+    - [C-FMT-06 - Structures](#c-fmt-06---structures)
   - [TODO list](#not-exhaustive-todo-list)
 
 
@@ -49,6 +54,138 @@ interpreted as described in RFC 2119.
 ### C-FMT-03 - Files length
 
 - This is highly dependent of the context, but a C file (.h/.c) **should** not exceed **1000** lines of code to stay readable.
+
+### C-FMT-04 - Comments
+
+- Single and multi-lines **must** use `//`
+- The usage of `/*` `*/` for comments is not allowed.
+- If you need to toggle a block of code, you **should** use `#if 0` and `#endif`
+- At least one space **must** be written after `//`
+
+```c
+// A valid comment
+//An ill-formatted comment
+
+// =================== //
+//  A header example  //
+// =================== //
+
+#if 0
+// [code being disabled ...]
+#endif // #if 0
+```
+
+> [!NOTE]
+> The #if approach has several advantages over the use of `/* [...] */` :
+> - It nests properly.
+> - Toggling the code only require to change the `0` to `1`.
+> - It removes the ability to write comments in the middle of a line of code, which for the most part breaks the reading of the line and makes it artificially more complex.
+
+- Comments are recommended, provided they are useful.<br>
+Don't explain HOW the code works: the code itself should be self-explanatory.<br>
+However, explain WHY you are doing something that isn't obvious. It's important to document edge cases because a deeper context will be needed to understand the code.
+
+> [!NOTE]
+> A comment, regardless of its form, increase the number of lines and the complexity of the code.
+> It can become more harmful than helpful to have useless comments where the code could have been self-explanatory by carefully naming your functions / variables and adopting naming conventions.
+
+### C-FMT-05 - Identifiers
+
+- Identifiers **must not** start with an underscore. It's reserved by the Standard.
+- The length of an identifier **must not** exceed **31** characters.
+- Identifiers **must** be written in english.
+- Identifiers length **should** greater than **1**. Longer names are preferable if they improve the readability of the code, but there are some exceptions in mathematics code or loop variables.
+- Avoid generic identifier names such as `tmp`. Taking the time to choose a coherent name for every identifier will greatly improve the readability of the code. Always think about future readers.
+
+### C-FMT-06 - Structures
+
+- `struct` identifiers **must** be written in PascalCase.
+- `{` and `};` **must** be on their own line.
+- Each line **must** only contain one variable declaration.
+- Variable names and comments **can** be aligned according to your preferences.
+However, keep it consistent between all definitions.
+- The `struct` definition **must not** contain any `typedef`.
+- A `struct` definition (comment included) **must** have at least one blank line at the beginning and the end of the definition.
+
+```c
+// Above code [...]
+
+// Comment related to the structure defined below.
+// It could be written on multiple lines, it's not important
+struct Example
+{
+   int first;  // The first comment is aligned with the second one.
+   int second; // Second comment
+   unsigned int  third;  // Only the  last two variable names are aligned here
+   unsigned long fourth; // to avoid an empty gaps with "first" and "second"
+};
+
+typedef struct Example Example;
+
+struct SecondExample
+{
+   int           first; // This alignment could also be valid.
+   unsigned int  second; // Just keep it consistent between all definitions.
+};
+```
+
+```c
+// Example of ill-formatted structs:
+typedef struct IllFormattedTypedef
+{
+   [...]
+} IllFormattedTypedef;
+
+struct ill_formatted_case
+{
+   [...]
+};
+
+struct IllFormattedBraces {
+   [...]
+};
+
+struct IllFormattedDeclaration
+{
+   int a, b;
+};
+struct IllFormattedBlankLines
+{
+   [...]
+};
+```
+
+- Assigning / return an unnamed `struct` **must** comply with the following style:
+
+```c
+StructExample example = (StructExample) {
+   .first  = [...]; // Like the struct definition, alignment is up to you as long as it stays consistent.
+   .second = [...];
+   .complexValue = (ComplexStruct) {
+      [...];
+   };
+};
+
+[...]
+
+return (StructExample) {
+   .first = [...];
+   .second = [...];
+   .complexValue = (ComplexStruct) {
+      [...];
+   };
+};
+```
+
+### C-FMT-07 - Enums
+
+### C-FMT-06 - Unions
+
+### C-FMT-07 - Global variables
+
+### C-FMT-08 - Static variables
+
+### C-FMT-09 - Local variables
 
 
 C-FUNC-XX - C Functions Rules
