@@ -66,9 +66,9 @@ In some examples, `[...]` is used to remove a chunk of code.
 // A valid comment
 //An ill-formatted comment
 
-// =================== //
-//  A header example  //
-// =================== //
+// ==================== //
+//   A header example   //
+// ==================== //
 
 #if 0
 // [code being disabled ...]
@@ -103,7 +103,7 @@ However, explain WHY you are doing something that isn't obvious. It's important 
 - `{` and `};` **must** be on their own line.
 - Each line **must** only contain one variable declaration.
 - Variable names and comments **can** be aligned according to your preferences.
-However, keep it consistent between all definitions.
+However, keep it consistent across all definitions.
 - The `struct` definition **must not** contain any `typedef`.
 - A `struct` definition (comment included) **must** have at least one blank line at the beginning and the end of the definition.
 
@@ -116,8 +116,8 @@ struct Example
 {
    int first;  // The first comment is aligned with the second one.
    int second; // Second comment
-   unsigned int  third;  // Only the  last two variable names are aligned here
-   unsigned long fourth; // to avoid an empty gaps with "first" and "second"
+   unsigned int  third;
+   unsigned long fourth;
 };
 
 typedef struct Example Example;
@@ -158,8 +158,9 @@ struct IllFormattedBlankLines
 - Assigning / return an unnamed `struct` **must** comply with the following style:
 
 ```c
+// Like the struct definition, alignment is up to you as long as it stays consistent.
 StructExample example = (StructExample) {
-   .first  = [...]; // Like the struct definition, alignment is up to you as long as it stays consistent.
+   .first  = [...];
    .second = [...];
    .complexValue = (ComplexStruct) {
       [...];
@@ -271,12 +272,6 @@ u64 compliant_function( void )
 ```
 
 C-FUNC-XX - Function specifiers order shall be static, volatile and inline
---
-
-C-LANG-XX - Language related rules
-==
-
-C-LANG-XX - Identifiers, files, strings and comments shall be written in english
 --
 
 
