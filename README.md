@@ -1,20 +1,31 @@
-# The Unofficial C Language Coding Standards
+# Another Unofficial C Language Coding Standards
 
-> [!IMPORTANT]
-> These coding standards are based on my own preferences and experiences.
-> It's certainly not the best way to code in C (there's no particular standard above the others), but it's how I like to code in C.
->
-> You can use it as you wish in your personal projects, or adapt it to your needs.
-> The most important rule to follow in programming is to be **consistent** with the code around you.
-> An important part of writing good code is following the style adopted and the guidelines of the project.
->
+> [!CAUTION]
+> This document is in **Work In Progress** stage: Nothing is finished, everything is poorly written.
+> At this stage, it's mostly a brain dump, but the fact that it's public motivates me to work on it.
+
+## Summary
+
+- [Another Unofficial C Language Coding Standards](#another-unofficial-c-language-coding-standards)
+   - [Getting Started](#getting-started)
+   - [Introduction](#introduction)
+   - [TODO list](#todo-list)
+
+## Introduction
+
+These coding standards are based on my own preferences and experiences.<br>
+It's certainly not the best way to code in C (there's no particular standard above the others), but it's how I like to code.<br>
+
+You can use it as you wish in your personal projects, or adapt it to your needs.<br>
+The **most important rule** to follow in programming is to be **consistent** with the code around you.<br>
+
+An important part of writing good code is following the style and the guidelines adopted for the project. If a rule is updated, the codebase applying these coding standards **must** be updated accordingly. This can be done by applying a script on it (clang-format, clang-tidy, prettier, ...).
+
 > Consistency in names, formatting, order and logic makes it easier for everyone to understand each other.
 > It also helps us to focus on what the code is doing, so that bugs are not overlooked during reviews.
 
-> [!CAUTION]
-> This document is in **WIP** stage: Nothing is finished, everything is poorly written.
-> At this stage, it's mostly a brain dump, but the fact that it's public motivates me to work on it.
-
+> [!IMPORTANT]
+> This document is subject to change and, therefore, may be amended.
 
 ## Getting started
 
@@ -25,41 +36,52 @@ interpreted as described in RFC 2119.
 In some examples, `[...]` is used to remove a chunk of code.
 
 
-## Summary
+### TODO List
 
-- [The Unofficial C Language Coding Standards](#the-unofficial-c-language-coding-standards)
-  - [Getting Started](#getting-started)
-  - [C-FMT-XX - Formatting](#c-fmt-xx-c-formatting-rules)
-    - [C-FMT-01 - Indentations](#c-fmt-01---indentations)
-    - [C-FMT-02 - Lines width](#c-fmt-02---lines-width)
-    - [C-FMT-03 - Files length](#c-fmt-03---files-length)
-    - [C-FMT-04 - Comments](#c-fmt-04---comments)
-    - [C-FMT-05 - Identifiers](#c-fmt-05---identifiers)
-    - [C-FMT-06 - Structures](#c-fmt-06---structures)
-  - [TODO list](#not-exhaustive-todo-list)
+> [!NOTE]
+> That list is not exhaustive
+----------
+- [x] Write an introduction
+- [ ] Write a summary
+- [ ] Write an indentation section
+- [ ] Write a preprocessor section
+- [ ] Write a comments section
+- [ ] Write a define section
+- [ ] Write a formatting section
+- [ ] Write a struct / union / enum section
+- [ ] Write a header files section
+- [ ] Write an implementation file section
+- [ ] Write a good naming section
+- [ ] Write a "Function" section
+- [ ] Write a logic flow section
+- [ ] Write a constant section
+- [ ] Write a compiler warnings section
+- [ ] Write a C recommended version section
+- [ ] Write a code organization section
+- [ ] Finish the list of this todo-list
 
 
 ## C-FMT-XX - Formatting rules
 
-### C-FMT-01 - Indentations
+### C-FMT-XX - Indentations
 
 - Spaces **must** be used for indentation. Tabs aren't allowed.
 - Indentations **must** be **3** characters wide.
 
-### C-FMT-02 - Lines width
+### C-FMT-XX - Lines width
 
-- Each line **should** be limited to **79** characters.
 - Each line **must** be limited to **99** characters.
 
-### C-FMT-03 - Files length
+### C-FMT-XX - Files length
 
-- This is highly dependent of the context, but a C file (.h/.c) **should** not exceed **1000** lines of code to stay readable.
+- As this is highly dependent of the context, there is no hard-limit imposed.<br>
+However, it **should** not exceed **1000** lines of code to stay readable.
 
-### C-FMT-04 - Comments
+### C-FMT-XX - Comments
 
 - Single and multi-lines **must** use `//`
 - The usage of `/*` `*/` for comments is not allowed.
-- If you need to toggle a block of code, you **should** use `#if 0` and `#endif`
+- If you need to toggle off a block of code, you **should** use `#if 0` and `#endif`
 - At least one space **must** be written after `//`
 
 ```c
@@ -89,15 +111,19 @@ However, explain WHY you are doing something that isn't obvious. It's important 
 > A comment, regardless of its form, increase the number of lines and the complexity of the code.
 > It can become more harmful than helpful to have useless comments where the code could have been self-explanatory by carefully naming your functions / variables and adopting naming conventions.
 
-### C-FMT-05 - Identifiers
+- Comments can be used as separators in order to improve the code readability.
+
+### C-FMT-XX - Identifiers
 
 - Identifiers **must not** start with an underscore. It's reserved by the Standard.
 - The length of an identifier **must not** exceed **31** characters.
-- Identifiers **must** be written in english.
-- Identifiers length **should** greater than **1**. Longer names are preferable if they improve the readability of the code, but there are some exceptions in mathematics code or loop variables.
+- Identifiers **must** be written in english and only use ASCII range.
+- Identifiers length **should** greater than **1**. Longer names are preferable if they improve the readability of the code, but there are some exceptions in mathematics code, loop variables or short functions.
+
+> [!NOTE]
 - Avoid generic identifier names such as `tmp`. Taking the time to choose a coherent name for every identifier will greatly improve the readability of the code. Always think about future readers.
 
-### C-FMT-06 - Structures
+### C-FMT-XX - Structures
 
 - `struct` identifiers **must** be written in PascalCase.
 - `{` and `};` **must** be on their own line.
@@ -110,8 +136,11 @@ However, keep it consistent across all definitions.
 ```c
 // Above code [...]
 
+typedef struct Example       Example;
+typedef struct SecondExample SecondExample;
+
 // Comment related to the structure defined below.
-// It could be written on multiple lines, it's not important
+// It can be written on multiple lines
 struct Example
 {
    int first;  // The first comment is aligned with the second one.
@@ -120,12 +149,10 @@ struct Example
    unsigned long fourth;
 };
 
-typedef struct Example Example;
-
 struct SecondExample
 {
-   int           first; // This alignment could also be valid.
-   unsigned int  second; // Just keep it consistent between all definitions.
+   int          first; // This alignment could also be valid.
+   unsigned int second; // Just keep it consistent between all definitions.
 };
 ```
 
@@ -178,33 +205,35 @@ return (StructExample) {
 };
 ```
 
-### C-FMT-07 - Enums
+### C-FMT-XX - Spacing
 
-### C-FMT-06 - Unions
+### C-FMT-XX - Enums
 
-### C-FMT-07 - Global variables
+### C-FMT-XX - Unions
 
-### C-FMT-08 - Static variables
+### C-FMT-XX - Global variables
 
-### C-FMT-09 - Local variables
+### C-FMT-XX - Static variables
+
+### C-FMT-XX - Local variables
 
 
 C-FUNC-XX - C Functions Rules
 ==
 
-C-FUNC-XX - A function name shall be written in snake_case
+C-FUNC-XX - A function name *must* be written in snake_case
 --
 
 C-FUNC-XX - A function shall have at most 4 parameters
 --
 
-C-FUNC-XX - A function with no parameter shall have a `void` parameter.
+C-FUNC-XX - A function with no parameter *must* have a `void` parameter.
 --
 
 ```c
 void non_compliant_function();
 
-void compliant_function( void );
+void compliant_function(void);
 ```
 
 C-FUNC-XX - A static function shall be only defined in a .c file.
@@ -273,25 +302,3 @@ u64 compliant_function( void )
 
 C-FUNC-XX - Function specifiers order shall be static, volatile and inline
 --
-
-
-### Not exhaustive TODO List
-----------
-- [x] Write an introduction
-- [ ] Write a summary
-- [x] Write an indentation section
-- [ ] Write a preprocessor section
-- [ ] Write a comments section
-- [ ] Write a define section
-- [ ] Write a formatting section
-- [ ] Write a struct / union / enum section
-- [ ] Write a header files section
-- [ ] Write an implementation file section
-- [ ] Write a good naming section
-- [ ] Write a "Function" section
-- [ ] Write a logic flow section
-- [ ] Write a constant section
-- [ ] Write a compiler warnings section
-- [ ] Write a C recommended version section
-- [ ] Write a code organization section
-- [ ] Finish the list of this todo-list
