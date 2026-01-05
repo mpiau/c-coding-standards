@@ -1,25 +1,25 @@
 # Another Unofficial C Language Coding Standards
 
 > [!CAUTION]
-> This document is in **Work In Progress** stage: Nothing is finished, everything is poorly written.
+> This document is in WIP: nothing is finished, everything is poorly written.<br>
 > At this stage, it's mostly a brain dump, but the fact that it's public motivates me to work on it.
 
 ## Summary
 
 - [Another Unofficial C Language Coding Standards](#another-unofficial-c-language-coding-standards)
-   - [Getting Started](#getting-started)
    - [Introduction](#introduction)
+   - [Getting Started](#getting-started)
    - [TODO list](#todo-list)
 
 ## Introduction
 
-These coding standards are based on my own preferences and experiences.<br>
+This coding standards is based on my own preferences and experiences.<br>
 It's certainly not the best way to code in C (there's no particular standard above the others), but it's how I like to code.<br>
 
 You can use it as you wish in your personal projects, or adapt it to your needs.<br>
 The **most important rule** to follow in programming is to be **consistent** with the code around you.<br>
 
-An important part of writing good code is following the style and the guidelines adopted for the project. If a rule is updated, the codebase applying these coding standards **must** be updated accordingly. This can be done by applying a script on it (clang-format, clang-tidy, prettier, ...).
+An important part of writing good code is following the style and the guidelines adopted for the project. If the document is updated, the codebase following these rules **must** be updated accordingly. This can be done by applying a formatter on it (clang-format, clang-tidy, prettier, ...).
 
 > Consistency in names, formatting, order and logic makes it easier for everyone to understand each other.
 > It also helps us to focus on what the code is doing, so that bugs are not overlooked during reviews.
@@ -34,7 +34,6 @@ The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD",
 interpreted as described in RFC 2119.
 
 In some examples, `[...]` is used to remove a chunk of code.
-
 
 ### TODO List
 
@@ -60,22 +59,22 @@ In some examples, `[...]` is used to remove a chunk of code.
 - [ ] Write a code organization section
 - [ ] Finish the list of this todo-list
 
+## C-FMT-XX - Formatting
 
-## C-FMT-XX - Formatting rules
-
-### C-FMT-XX - Indentations
+### C-FMT-01 - Indentations
 
 - Spaces **must** be used for indentation. Tabs aren't allowed.
 - Indentations **must** be **3** characters wide.
 
-### C-FMT-XX - Lines width
+### C-FMT-02 - Lines width
 
-- Each line **must** be limited to **99** characters.
+- Lines **must** be limited to **99** characters.
 
-### C-FMT-XX - Files length
+### C-FMT-03 - Files length
 
-- As this is highly dependent of the context, there is no hard-limit imposed.<br>
-However, it **should** not exceed **1000** lines of code to stay readable.
+- It highly depends on the context, but files **should not** contain more than **999** lines of code.<br>
+When you start reaching four digits, it's time to refactor.
+
 
 ### C-FMT-XX - Comments
 
